@@ -1,0 +1,9 @@
+---
+- name: check if rancher cli is installed
+  command: "sudo /usr/local/bin/rancher --version"
+  register: check_version
+  changed_when: no
+  failed_when: no
+
+- include_tasks: rancher.yml
+  when: check_version.stdout is defined
